@@ -37,6 +37,41 @@ const getEmployees = async (req, res) => {
         );        
     }
 };
+
+
+// fetch single Employee
+const getSingleEmployeeData = async (req, res) => {
+    
+    const empId = req.params.empId
+
+    try {
+        return await employeeController
+        .getSingleEmployee(empId)
+        .then((response) => {
+            // console.log("Success response : ", response);
+            return resSuccessHandlerService(
+                res,
+                "Employee details Fetched successfully !!",
+                response
+            );
+        })
+        .catch((error) => {
+            return resErrorHandlerService(
+            res,
+            "Employee details fetch failed!",
+            error
+            );
+        });
+        
+    } catch (error) {
+        console.log('Emp service error')
+        return resErrorHandlerService(
+            res,
+            "Note details adding failed! Catch",
+            error
+        );        
+    }
+};
  
 // Add new employees into DB
 const addEmployee = async (req, res) => {
@@ -156,5 +191,5 @@ module.exports = {
     addEmployee,
     updateEmployee,
     deleteEmployee,
-    login
+    getSingleEmployeeData
 }

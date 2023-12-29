@@ -15,6 +15,7 @@ const getAllEmployees = async () => {
 
       const employeeList = await employeesModel.findAll({
         attributes: [
+          'id',
           'first_name',
           'last_name',
           'phone_number',
@@ -30,6 +31,39 @@ const getAllEmployees = async () => {
     } catch (error) {
       return errorReturnHandler("Error : Employee details fetch failed!", error);      
     }
+};
+
+
+// fetch single employee data
+const getSingleEmployee = async (employeeId) => {
+    
+  try {
+
+    const isEmployeeExist = await employeesModel.findOne({
+      where: {
+          id: employeeId,
+      },
+      attributes: [
+        'id',
+        'first_name',
+        'last_name',
+        'phone_number',
+        'email',
+        'gender',
+        'photo'
+      ]
+    });    
+
+    if (isEmployeeExist) {
+      return successReturnHandler("Employee details fetched successfully", isEmployeeExist)
+    } else {
+      return errorReturnHandler("Error : This employee does not exist!");      
+    }
+    
+    
+  } catch (error) {
+    return errorReturnHandler("Error : Employee details fetch failed!", error);      
+  }
 };
 
 
@@ -149,5 +183,6 @@ module.exports = {
     getAllEmployees,
     addEmployee,
     updateEmployee,
-    deleteEmployee
+    deleteEmployee,
+    getSingleEmployee
 };

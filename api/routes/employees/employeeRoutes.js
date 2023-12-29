@@ -9,7 +9,7 @@ module.exports = () => {
 
     router.post("/", endpointAuthentication, employeeService.addEmployee); 
 
-    // router.post("/login", employeeService.login);  
+    router.get("/:empId?", endpointAuthentication, employeeService.getSingleEmployeeData); 
 
     router.put("/:empId?", endpointAuthentication, employeeService.updateEmployee); 
 
