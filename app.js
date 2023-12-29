@@ -47,3 +47,7 @@ require("./sequelize/authenticate");
 server.listen(PORT, () => {
   console.log("Server is up and running at port -----", PORT);
 });
+
+module.exports = {
+  app
+}

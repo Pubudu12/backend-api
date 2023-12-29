@@ -14,3 +14,10 @@ async function assertDatabaseConnectionOk() {
 }
 
 assertDatabaseConnectionOk();
+// beforeAll(async () => {
+// 	await assertDatabaseConnectionOk();
+// });
+
+// test('should save all records', () => {
+// 	// Your test logic here
+// });
